@@ -151,10 +151,19 @@
     }
   ],
   "post-processors": [
-    {
-      "output": "../builds/{{user `box_basename`}}.{{.Provider}}.box",
-      "type": "vagrant"
-    }
+    [
+      {
+        "output": "../builds/{{user `box_basename`}}.{{.Provider}}.box",
+        "type": "vagrant"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "vitbyst/centos6.10",
+        "version_description": "Centos 6.10 with updates",
+        "access_token": "{{user `cloud_token`}}",
+        "version": "{{user `version`}}"
+      }
+    ]
   ],
   "provisioners": [
     {
@@ -200,6 +209,7 @@
     "name": "centos-6.10",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "centos-6.10-x86_64",
-    "version": "TIMESTAMP"
+    "version": "0.0.{{timestamp}}",
+    "cloud_token": "{{ env `ATLAS_TOKEN` }}"
   }
 }
