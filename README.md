@@ -36,6 +36,16 @@ end
 \***NOTE:** support for these providers is considered experimental and corresponding Vagrant Cloud images may or may not exist.
 
 #### Using `packer`
+Export Vagrant authentication token
+`export ATLAS_TOKEN=DVryuiqqFPZe0A.atlasv1.TnDRI1u28uDB374lNfYfzDkhy2lXqjAylyZsNxQwBbeAsagZgs8lueFzGAqg70mKUUw`
+
+To build an Centos 7.6 box for only the VirtualBox provider
+
+```
+$ cd git/bento/centos/
+$ packer build -only=virtualbox-iso centos-7.6-x86_64.json
+```
+
 
 To build an Ubuntu 16.04 box for only the VirtualBox provider
 
@@ -55,7 +65,7 @@ To build CentOS 7.3 boxes for all providers except VMware and Parallels
 
 ```
 $ cd centos
-$ packer build -except=parallels-iso,vmware-iso centos-7.3-x86_64.json
+$ packer build -except=parallels-iso,vmware-iso centos-7.6-x86_64.json
 ```
 
 To use an alternate mirror
@@ -134,4 +144,3 @@ limitations under the License.
 ```
 
 [travis]: https://travis-ci.org/chef/bento
-
